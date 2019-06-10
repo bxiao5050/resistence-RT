@@ -62,9 +62,7 @@ class Myfont():
         self.label.bind('<B1-Motion>', self.mov)
         self.fontgui = FontGUI(master, canvas, self)
 
-
     def get_para(self):
-
         para = {}
         para['fontf_var'] = self.fontf_var.get()
         para['fontw_var'] = self.fontw_var.get()
