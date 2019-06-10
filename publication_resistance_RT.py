@@ -256,7 +256,7 @@ class FontPanel(Frame):
         return font
 
     def on_click(self,event, obj):
-        for font in self.myfonts:
+        for i, font in enumerate(self.myfonts):
             font.fontgui.pack_forget()
             font.label.config(relief = 'flat')
 
