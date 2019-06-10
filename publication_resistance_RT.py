@@ -43,7 +43,8 @@ class Myfont():
         self.fontf_var.set('Times New Roman')
         self.fontw_var = StringVar()
         self.fontw_var.set('normal')
-        self.fonts_var = IntVar()
+        try:
+            self.fonts_var = IntVar()
         self.fonts_var.set(12)
         self.fontc_var = StringVar()
         self.fontc_var.set('black')
@@ -63,6 +64,7 @@ class Myfont():
 
 
     def get_para(self):
+
         para = {}
         para['fontf_var'] = self.fontf_var.get()
         para['fontw_var'] = self.fontw_var.get()
