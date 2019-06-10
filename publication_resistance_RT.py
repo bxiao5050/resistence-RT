@@ -282,7 +282,7 @@ class Publication_resistance_RT(Frame):
 
         self.para = Publication_para_thickness(para_p,  self.canvas)
         exp_p = LabelFrame(para_p, text = 'All sparameters', fg = 'red') #export button panel
-        Button(exp_p, text = 'export .csv', command = self.on_export_csv).grid(row = 0, column =1, sticky = 'nw', padx = (5,5))
+        Button(exp_p, text = 'export .csv', command = self.on_export_csv).grid(row = 0, column =1, sticky = 'nw', padx = (5, 5))
         Button(exp_p, text = 'save as template', command = self.on_save_template).grid(row = 0, column =2, sticky = 'nw', padx = (5,5))
         Button(exp_p, text = 'import template', command = self.on_import_template).grid(row = 0, column =3
             , sticky = 'nw', padx = (5,5))
