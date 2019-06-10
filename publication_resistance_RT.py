@@ -180,7 +180,7 @@ class FontGUI(Frame):
         #font content
         self.font_var = StringVar()
         # self.font_var.set(self.canvas.itemcget(self.obj, 'text'))
-        font_e = Entry(tool_f,width = 50, textvariable = self.font_var, relief = 'flat')
+        font_e = Entry(tool_f,width = 5, textvariable = self.font_var, relief = 'flat')
         font_e.bind('<FocusOut>',  self.on_update_text)
         font_e.bind('<Return>',   self.on_update_text)
 
