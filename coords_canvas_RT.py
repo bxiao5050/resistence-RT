@@ -136,6 +136,18 @@ class Coords_canvas_RT(Frame):
                 self.clicked_xy.append((click_x, click_y))
 
         self.updata_canvas()
+        
+    def updata_canvas(self):
+        #clear all highlights
+        for line in self.plot_clicked:
+            line.remove()
+        self.plot_clicked.clear()
+
+        x = [x for x, y in self.clicked_xy]
+        y = [y for x, y in self.clicked_xy]
+        line, = self.ax.plot(x, y,linestyle='none', marker='s', markeredgecolor="orange",markersize = 11, markerfacecolor='white',markeredgewidth =3)
+        self.plot_clicked.append(line)
+        self.canvas.draw()
 
     def line_select_callback(self, eclick, erelease):
         'eclick and erelease are the press and release events'
@@ -150,32 +162,6 @@ class Coords_canvas_RT(Frame):
         self.updata_canvas()
         # return clicked_xy
 
-    def updata_canvas(self):
-        #clear all highlights
-        for line in self.plot_clicked:
-            line.remove()
-        self.plot_clicked.clear()
-
-        x = [x for x, y in self.clicked_xy]
-        y = [y for x, y in self.clicked_xy]
-        line, = self.ax.plot(x, y,linestyle='none', marker='s', markeredgecolor="orange",markersize = 11, markerfacecolor='white',markeredgewidth =3)
-        self.plot_clicked.append(line)
-        self.canvas.draw()
 
 
 
-
-
-
-
-
-
-
-def main():
-    root = Tk()
-    app = Coords_canvas_RT(root)
-    app.pack()
-    app.mainloop()
-
-if __name__=='__main__':
-    main()

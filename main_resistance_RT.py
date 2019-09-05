@@ -39,9 +39,6 @@ class Main_Panel(Frame):
         else:
             return
 
-
-
-        # d = pd.read_csv('210913_K4_1_Wid.csv', header =1)
         coords = [(x,y) for x, y in zip(d.iloc[:, 0], d.iloc[:,1])]
         resis = d.iloc[:, 2:5].mean(axis =1) # take average
 
@@ -72,13 +69,11 @@ class Main_RT(Coords_canvas_RT):
 
         self.set_data(data)
 
-
     def on_publication(self):
         w = Toplevel(self)
         w.title('set figure for publicaiton')
         c, ax,fig, cbar, cax = self.get_para_fig()
         Publication_resistance_RT(w,  c, ax,fig, cbar, cax)
-
 
     def on_remove_selected(self):
         self.remove_and_update()
