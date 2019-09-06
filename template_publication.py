@@ -91,9 +91,6 @@ class Myfont():
         widget.place(x=x,y=y)
         self.canvas.update()
 
-    def mouse_release(self, event):
-        self.highlight()
-
     def highlight(self, e=''):
         if self.rect_item is not None:
             self.canvas.delete(self.rect_item)
@@ -101,6 +98,11 @@ class Myfont():
         self.rect_item = self.canvas.create_rectangle(bbox, outline="red2", fill="")
         self.canvas.tag_raise(self.obj,self.rect_item)
         self.canvas.update()
+
+    def mouse_release(self, event):
+        self.highlight()
+
+
 
 
 
@@ -111,6 +113,12 @@ class ToolTip(object):
         self.tipwindow = None
         self.id = None
         self.x = self.y = 0
+
+    def hidetip(self):
+        tw = self.tipwindow
+        self.tipwindow = None
+        if tw:
+            tw.destroy()
 
     def showtip(self, text):
         "Display text in tooltip window"
@@ -128,11 +136,7 @@ class ToolTip(object):
                       font=("tahoma", "8", "normal"))
         label.pack(ipadx=1)
 
-    def hidetip(self):
-        tw = self.tipwindow
-        self.tipwindow = None
-        if tw:
-            tw.destroy()
+
 
 def CreateToolTip(widget, text):
     toolTip = ToolTip(widget)
@@ -200,19 +204,16 @@ class FontGUI(Frame):
         para = myfont.get_para()
         self.set_para(para)
 
-
-    def on_update_text(self, e):
-        text = self.font_var.get()
-        self.myfont.font_var.set(text)
-        self.canvas.update()
-
-
-
     def on_font_color(self):
         color_code = colorchooser.askcolor(title ="Choose color")[1]
         self.fontc_var.set(color_code)
         self.fontc.config(bg = self.fontc_var.get())
         self.on_font()
+        
+    def on_update_text(self, e):
+        text = self.font_var.get()
+        self.myfont.font_var.set(text)
+        self.canvas.update()
 
     def on_font(self, e=''):
         self.set_font(deg= self.fonta_var.get(), fontsize = self.fonts_var.get(), fontcolor = self.fontc_var.get(), fontfamily = self.fontf_var.get(), fontweight = self.fontw_var.get())
