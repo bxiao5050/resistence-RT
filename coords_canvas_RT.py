@@ -64,30 +64,20 @@ class Coords_canvas_RT(Frame):
                                                spancoords='pixels',
                                                interactive=False)
 
-    def get_para_fig(self):
+    # def get_para_fig(self):
 
 
-        c = np.array([v for v in self.data.values()])
-        ax = self.ax
-        fig = self.fig
-        cbar = self.cbar
-        cax = self.cax
+    #     c = np.array([v for v in self.data.values()])
+    #     ax = self.ax
+    #     fig = self.fig
+    #     cbar = self.cbar
+    #     cax = self.ca
+
+    #     return  c, ax,fig, cbar, cax
 
 
-        return  c, ax,fig, cbar, cax
 
 
-
-    #return clicked positions
-    def get_clicked(self):
-        return list(set(self.clicked_xy))
-
-    def _on_clear(self):
-        for line in self.plot_clicked:
-            line.remove()
-        self.clicked_xy.clear()
-        self.plot_clicked.clear()
-        self.canvas.draw()
 
 
     def on_click(self, event):
@@ -115,9 +105,17 @@ class Coords_canvas_RT(Frame):
         self.canvas.draw()
 
 
+    #return clicked positions
+    def get_clicked(self):
+        return list(set(self.clicked_xy))
 
+    def _on_clear(self):
+        for line in self.plot_clicked:
+            line.remove()
+        self.clicked_xy.clear()
+        self.plot_clicked.clear()
+        self.canvas.draw()
 
-    # return clicked x, y
     def get_click_xy(self, xdata, ydata):
         index_x = np.abs(self.x-xdata) < self.width/2
         index_y = np.abs(self.y-ydata) < self.width/2
