@@ -26,10 +26,10 @@ def main():
     cax=ax.scatter(x, y, c = c, s = 140, cmap = 'jet', marker = 's')
     cbar=fig.colorbar(cax, ticks = np.linspace(min(c), max(c), num = 9))
 
-    cbar.ax.set_title(r'Resistance ($\Omega$)')
+    cbar.ax.set_title('nm')
     ax.set_title('Resistance')
 
-    app = Publication_resistance_RT(root,  c, ax,fig, cbar, cax)
+    app = Template_publication(root,  c, ax,fig, cbar, cax)
     root.mainloop()
 
 #######################font
@@ -268,7 +268,7 @@ class FontPanel(Frame):
 
 
 #main
-class Publication_resistance_RT(Frame):
+class Template_publication(Frame):
     def __init__(self, master,  c, ax, fig, cbar, cax):
         super().__init__(master)
         self.pack(fill = 'both', expand =1)
@@ -548,7 +548,7 @@ class Publication_para_thickness(Frame):
 
         #colorbar title
         f_colorbar_title = LabelFrame(self, text = 'Colorbar title', fg = 'blue')
-        self.colorbarTitle_cb = ttk.Combobox(f_colorbar_title, values = [r'Resistance ($\Omega$)', 'value range','Resistance + range', 'without title'], width = 16)
+        self.colorbarTitle_cb = ttk.Combobox(f_colorbar_title, values = ['nm', 'value range','Resistance + range', 'without title'], width = 16)
         self.colorbarTitle_cb.current(0)
         self.colorbarTitle_cb.bind('<<ComboboxSelected>>', self.on_set_colorbar_title)
         #colorbar fontsize
@@ -666,12 +666,12 @@ class Publication_para_thickness(Frame):
 
     def get_colorbar_title(self, decimal):
         s = self.colorbarTitle_cb.get()
-        eles = [r'Resistance ($\Omega$)']
+        eles = ['nm']
         data = self.canvas.c
         colorbarTitle = []
 
-        if s == r'Resistance ($\Omega$)':
-            colorbarTitle = [r'Resistance ($\Omega$)' for i in eles]
+        if s == 'nm':
+            colorbarTitle = ['nm' for i in eles]
         elif s == 'value range':
 
             colorbarTitle = [f'{int(np.round(data.min(), decimal))}-{int(np.round(data.max(), decimal))}' for ele in eles] if decimal ==0 else [f'{np.round(data.min(), decimal)}-{np.round(data.max(), decimal)}' for ele in eles]
